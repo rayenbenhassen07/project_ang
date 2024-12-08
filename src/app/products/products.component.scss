@@ -1,0 +1,29 @@
+.product-card {
+  background-color: #fff;
+}
+
+.product-image img {
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05);
+}
+
+.text-main3 {
+  color: #1e90ff; /* Adjust to match your theme */
+}
+
+.bg-main3 {
+  background-color: #1e90ff;
+}
+
+.hover\:bg-main4:hover {
+  background-color: #104f7b;
+}
+
+.fa-star,
+.fa-star-o {
+  font-size: 1rem;
+  margin-right: 2px;
+}

@@ -1,0 +1,42 @@
+<section id="excursions" class="py-16 min-h-screen bg-gray-50 mt-20">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+      Discover Our Excursions
+    </h2>
+    <p class="text-sm md:text-md mb-12 text-gray-600">
+      Embark on unique journeys designed for explorers at heart. Choose an
+      experience that awaits you!
+    </p>
+
+    <!-- Dynamic Trips Grid -->
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 px-4"
+    >
+      <div
+        *ngFor="let trip of trips"
+        class="group relative overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 bg-white"
+      >
+        <!-- Link each trip to its details page -->
+        <a [routerLink]="['/trip-detail', trip.id]" class="block">
+          <img
+            [src]="'https://admin.djerbatrips.com/assets/' + trip.main_img"
+            alt="{{ trip.name }}"
+            class="h-64 lg:h-72 w-full object-cover object-center transition-transform duration-500 ease-in-out group-hover:scale-110"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent transition-opacity duration-500 ease-in-out opacity-0 group-hover:opacity-100"
+          ></div>
+          <div class="absolute inset-x-0 bottom-0 p-6 text-center text-white">
+            <h3 class="text-lg font-semibold mb-1">{{ trip.name }}</h3>
+            <p class="text-base font-medium">{{ trip.price }} USD</p>
+          </div>
+          <div
+            class="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 px-3 py-1 rounded-lg shadow-md text-sm font-semibold"
+          >
+            Popular
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,70 @@
+<nav class="bg-gray-800 text-white fixed w-full top-0 z-50">
+  <div class="container mx-auto flex justify-between items-center py-4 px-6">
+    <!-- Logo -->
+    <a routerLink="/" class="text-xl font-bold">
+      <img src="assets/logo.png" alt="Logo" class="h-10" />
+    </a>
+
+    <!-- Desktop Menu -->
+    <ul class="hidden lg:flex space-x-6">
+      <li>
+        <a routerLink="/home" class="hover:text-gray-400 flex items-center">
+          Home
+        </a>
+      </li>
+      <li>
+        <a routerLink="/trips" class="hover:text-gray-400">Trips</a>
+      </li>
+      <li>
+        <a routerLink="/blog" class="hover:text-gray-400">Blog</a>
+      </li>
+      <li>
+        <a routerLink="/products" class="hover:text-gray-400">Products</a>
+      </li>
+      <li>
+        <a routerLink="/account" class="hover:text-gray-400">Account</a>
+      </li>
+      <li>
+        <a routerLink="/about" class="hover:text-gray-400">About</a>
+      </li>
+    </ul>
+
+    <!-- Mobile Menu Toggle -->
+    <button
+      (click)="toggleMenu()"
+      class="lg:hidden text-2xl focus:outline-none"
+      aria-label="Menu Toggle"
+    >
+      <i
+        class="fa"
+        [ngClass]="{ 'fa-bars': !isMenuOpen, 'fa-times': isMenuOpen }"
+      ></i>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div *ngIf="isMenuOpen" class="lg:hidden bg-gray-900 py-4">
+    <ul class="space-y-4 text-center">
+      <li>
+        <a routerLink="/home" class="block hover:text-gray-400">Home</a>
+      </li>
+      <li>
+        <a routerLink="/trips" class="block hover:text-gray-400"> Trips </a>
+      </li>
+      <li>
+        <a routerLink="/blog" class="block hover:text-gray-400"> Blog </a>
+      </li>
+      <li>
+        <a routerLink="/products" class="block hover:text-gray-400">
+          Products
+        </a>
+      </li>
+      <li>
+        <a routerLink="/account" class="block hover:text-gray-400">Account</a>
+      </li>
+      <li>
+        <a routerLink="/about" class="block hover:text-gray-400">About</a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,251 @@
+<div
+  class="mt-32 max-w-7xl mx-auto p-4 sm:p-6 bg-white rounded-3xl shadow-lg transition-all duration-500"
+>
+  <!-- Trip Section with Image and Text Side-by-Side -->
+  <div class="flex flex-col sm:flex-row items-start gap-6 sm:gap-8 mb-8">
+    <!-- Trip Main Image -->
+    <div class="flex-shrink-0">
+      <img
+        [src]="'https://admin.djerbatrips.com/assets/' + tripDetails?.main_img"
+        alt="{{ tripDetails?.name }}"
+        class="w-full lg:w-72 lg:h-72 object-cover rounded-lg shadow-md"
+      />
+    </div>
+
+    <!-- Trip Details -->
+    <div class="flex-1 space-y-2">
+      <!-- Title -->
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">
+        {{ tripDetails?.name }}
+      </h1>
+
+      <!-- Description -->
+      <p
+        class="text-sm sm:text-base text-gray-600 mt-4 leading-relaxed"
+        [innerHTML]="tripDetails?.short_description"
+      ></p>
+
+      <!-- Price Section -->
+      <div
+        class="flex items-center justify-start gap-4 text-sm sm:text-base text-gray-700 mt-4"
+      >
+        <span class="font-medium">Price: </span>
+        <span class="text-main4">{{ tripDetails?.price }} DT</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reservation Form Section -->
+  <div class="bg-gray-50 p-6 sm:p-8 rounded-xl shadow-md mb-8">
+    <h2
+      class="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 text-center"
+    >
+      Make a Reservation
+    </h2>
+    <form
+      (ngSubmit)="createReservation()"
+      #reservationForm="ngForm"
+      class="space-y-4"
+    >
+      <!-- Name -->
+      <div>
+        <label class="block text-sm text-gray-700">Name:</label>
+        <input
+          type="text"
+          [(ngModel)]="reservationData.name"
+          name="name"
+          required
+          class="border p-2 w-full rounded-lg"
+        />
+      </div>
+
+      <!-- Phone -->
+      <div>
+        <label class="block text-sm text-gray-700">Phone:</label>
+        <input
+          type="text"
+          [(ngModel)]="reservationData.phone"
+          name="phone"
+          required
+          class="border p-2 w-full rounded-lg"
+        />
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-sm text-gray-700">Email:</label>
+        <input
+          type="email"
+          [(ngModel)]="reservationData.email"
+          name="email"
+          required
+          class="border p-2 w-full rounded-lg"
+        />
+      </div>
+
+      <!-- Reservation Date -->
+      <div>
+        <label class="block text-sm text-gray-700">Reservation Date:</label>
+        <input
+          type="datetime-local"
+          [(ngModel)]="reservationData.date"
+          name="date"
+          required
+          class="border p-2 w-full rounded-lg"
+        />
+      </div>
+
+      <!-- Quantity -->
+      <div>
+        <label class="block text-sm text-gray-700">Quantity:</label>
+        <input
+          type="number"
+          [(ngModel)]="reservationData.quantity"
+          name="quantity"
+          min="1"
+          class="border p-2 w-full rounded-lg"
+        />
+      </div>
+
+      <!-- Options -->
+      <div>
+        <label class="block text-sm text-gray-700">Options:</label>
+        <input
+          type="texterea"
+          [(ngModel)]="reservationData.options"
+          name="options"
+          min="1"
+          class="border p-2 w-full rounded-lg"
+        />
+      </div>
+
+      <!-- Quantity -->
+      <div>
+        <label class="block text-sm text-gray-700">Remarque:</label>
+        <input
+          type="texterea"
+          [(ngModel)]="reservationData.remarque"
+          name="remarque"
+          min="1"
+          class="border p-2 w-full rounded-lg"
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button
+          type="submit"
+          [disabled]="!reservationForm.form.valid"
+          class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 disabled:bg-blue-300 transition"
+        >
+          Submit Reservation
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Popup Section for Confirmation -->
+  <div
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+    *ngIf="showPopup"
+  >
+    <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+      <h2 class="text-lg font-semibold text-gray-800 mb-2">
+        Reservation Successful!
+      </h2>
+      <p class="text-gray-600 mb-4">
+        Your reservation has been completed successfully.
+      </p>
+      <button
+        class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+        (click)="closePopup()"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+
+  <!-- Detailed Description Section -->
+  <div class="bg-gray-50 p-6 sm:p-8 rounded-xl shadow-xl mb-8">
+    <h2 class="text-3xl font-bold text-gray-900 mb-4">Detailed Description</h2>
+    <div
+      class="text-gray-800 text-base leading-relaxed"
+      [innerHTML]="tripDetails?.long_description"
+    ></div>
+  </div>
+
+  <!-- Remarks Section -->
+  <div class="bg-gray-50 p-6 sm:p-8 rounded-xl shadow-xl mb-8">
+    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Remarks</h3>
+    <div
+      class="text-gray-700 text-base leading-relaxed"
+      [innerHTML]="tripDetails?.remarque"
+    ></div>
+  </div>
+
+  <!-- Created and Updated Dates -->
+  <div class="mt-8 text-gray-600 space-y-2">
+    <p class="text-lg sm:text-xl font-medium">
+      <strong class="text-gray-900">Created At:</strong>
+      {{ tripDetails?.created_at | date : "short" }}
+    </p>
+    <p class="text-lg sm:text-xl font-medium">
+      <strong class="text-gray-900">Updated At:</strong>
+      {{ tripDetails?.updated_at | date : "short" }}
+    </p>
+  </div>
+
+  <div
+    class="mt-20 max-w-7xl mx-auto p-4 sm:p-6 bg-white rounded-3xl shadow-2xl transition-all duration-500"
+  >
+    <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 text-center">
+      {{ tripDetails?.name }}
+    </h1>
+
+    <!-- Reviews Section -->
+    <div class="reviews-section mb-8">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-6 text-center">
+        Customer Reviews
+      </h2>
+
+      <!-- Reviews Exist -->
+      <div *ngIf="reviews.length; else noReviews">
+        <div
+          *ngFor="let review of reviews"
+          class="review-card bg-white shadow-md rounded-lg mb-4 py-4 px-4"
+        >
+          <!-- Reviewer Header -->
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <p class="text-lg font-semibold text-gray-800">
+                {{ review.name }}
+              </p>
+              <p class="text-sm text-gray-500">{{ review.email }}</p>
+            </div>
+            <!-- Star Rating Section -->
+            <div class="flex items-center">
+              <ng-container
+                *ngFor="let star of getStarsArray(review.rate); let i = index"
+              >
+                <span class="text-yellow-400">★</span>
+              </ng-container>
+              <span class="ml-2 text-sm text-gray-600"
+                >({{ review.rate }}/5)</span
+              >
+            </div>
+          </div>
+
+          <!-- Review Description -->
+          <p class="text-sm text-gray-600 leading-relaxed">
+            {{ review.discription }}
+          </p>
+        </div>
+      </div>
+
+      <!-- No Reviews Template -->
+      <ng-template #noReviews>
+        <p class="text-center text-gray-500 mt-6">No reviews available yet.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

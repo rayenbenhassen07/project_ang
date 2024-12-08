@@ -1,0 +1,8 @@
+{
+  "/items": {
+    "target": "https://admin.djerbatrips.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

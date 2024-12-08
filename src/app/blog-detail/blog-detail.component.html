@@ -1,0 +1,51 @@
+<div class="mt-20 p-6 bg-gray-50">
+  <!-- Loading state -->
+  <div
+    *ngIf="isLoading"
+    class="fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center z-50"
+  >
+    <div
+      class="animate-spin rounded-full border-t-4 border-white w-16 h-16 border-solid"
+    ></div>
+  </div>
+
+  <!-- Error message -->
+  <div *ngIf="errorMessage" class="text-center py-6">
+    <p class="text-lg text-red-500">{{ errorMessage }}</p>
+  </div>
+
+  <!-- Blog Details -->
+  <div *ngIf="!isLoading && blogDetails" class="max-w-4xl mx-auto space-y-8">
+    <!-- Title and Author -->
+    <div class="text-center">
+      <h1 class="text-4xl font-semibold text-gray-800 mb-4">
+        {{ blogDetails.title }}
+      </h1>
+      <p class="text-sm text-gray-500">
+        By {{ blogDetails.author }} |
+        {{ blogDetails.created_at | date : "mediumDate" }}
+      </p>
+    </div>
+
+    <!-- Blog Image -->
+    <div class="relative mb-8">
+      <img
+        [src]="'https://admin.djerbatrips.com/assets/' + blogDetails.image"
+        [alt]="blogDetails.title"
+        class="w-full h-80 object-cover rounded-lg shadow-lg"
+      />
+    </div>
+
+    <!-- Short Description -->
+    <div
+      [innerHTML]="blogDetails.short_description"
+      class="text-gray-700 text-base lg:text-lg space-y-4"
+    ></div>
+
+    <!-- Long Description -->
+    <div
+      [innerHTML]="blogDetails.long_description"
+      class="text-gray-700 text-base lg:text-lg space-y-6"
+    ></div>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+<section class="hero-container">
+  <!-- Background Image -->
+  <img
+    id="hero-image"
+    class="hero-image"
+    src="assets/G4.jpeg"
+    alt="Hero Background"
+  />
+
+  <!-- Overlay -->
+  <div class="overlay"></div>
+
+  <!-- Hero Content -->
+  <div class="hero-content">
+    <h1 class="hero-title">Ride the Adventure</h1>
+    <p class="hero-description">
+      Discover top-quality quads and jet skis for your ultimate thrill.
+    </p>
+
+    <div class="button-group">
+      <a routerLink="/product-category/quads" class="btn explore-btn">
+        Shop Quads
+      </a>
+      <a routerLink="/product-category/jetskies" class="btn explore-btn">
+        Shop Jet Skis
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- About Us Section -->
+<section id="about" class="py-16 bg-white text-gray-900">
+  <div class="max-w-5xl mx-auto px-6 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">Why Choose Us?</h2>
+    <p class="text-lg mb-8">
+      We specialize in providing the best quads and jet skis at unbeatable
+      prices. Our team ensures every product meets the highest quality standards
+      for a safe and exciting ride.
+    </p>
+  </div>
+</section>
+
+<!-- Gallery Section -->
+<section id="gallery" class="gallery-section">
+  <div class="gallery-container">
+    <h2 class="gallery-title">Product Highlights</h2>
+    <p class="gallery-description">
+      Explore some of our best-selling models in action.
+    </p>
+    <div class="gallery-grid">
+      <div class="gallery-item" *ngFor="let image of galleryImages">
+        <img [src]="image.src" [alt]="image.alt" class="gallery-image" />
+        <div class="gallery-overlay">
+          <p class="gallery-caption">{{ image.alt }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Us Section -->
+<section
+  id="contact"
+  class="py-16 bg-gradient-to-t from-black to-main4 text-white"
+>
+  <div class="max-w-5xl mx-auto px-6 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
+    <p class="text-sm lg:text-lg mb-8">
+      Have questions or need assistance? Contact us for personalized support.
+    </p>
+    <form class="max-w-md mx-auto">
+      <div class="mb-4">
+        <input type="text" placeholder="Your Name" class="contact-input" />
+      </div>
+      <div class="mb-4">
+        <input type="email" placeholder="Your Email" class="contact-input" />
+      </div>
+      <div class="mb-4">
+        <textarea
+          placeholder="Your Message"
+          rows="4"
+          class="contact-input"
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="w-full px-4 py-2 text-sm bg-main3 text-white rounded-lg hover:bg-main4 transition"
+      >
+        Send Message
+      </button>
+    </form>
+  </div>
+</section>

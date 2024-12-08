@@ -1,0 +1,26 @@
+<div class="min-h-screen pt-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Our Blog</h1>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-start gap-6 lg:p-4 my-8 mx-4 lg:mx-6"
+    >
+      <div
+        *ngFor="let blog of blogs"
+        [routerLink]="['/blog', blog.id]"
+        class="p-4 bg-white shadow-lg rounded-lg cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
+      >
+        <img
+          [src]="'https://admin.djerbatrips.com/assets/' + blog.image"
+          [alt]="blog.title"
+          class="h-40 w-full lg:h-60 object-cover rounded-t-lg"
+        />
+        <h2 class="p-2 font-semibold text-sm lg:text-base text-gray-800">
+          {{ blog.title }}
+        </h2>
+        <p class="text-xs lg:text-sm text-gray-600">
+          {{ blog.excerpt || "Click to read more..." }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
